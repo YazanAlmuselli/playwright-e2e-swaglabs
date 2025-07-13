@@ -39,7 +39,7 @@ Edit
 ## 📊 Live Test Report
 
 🟢 View the generated Allure report here:  
-👉 **[View Live Allure Report](https://yazanalmuselli.github.io/swaglabs-playwright-e2e/)**
+👉 **[View Live Allure Report](https://yazanalmuselli.github.io/playwright-e2e-swaglabs/)**
 
 > This report is automatically hosted from the `/docs` folder via GitHub Pages.
 
