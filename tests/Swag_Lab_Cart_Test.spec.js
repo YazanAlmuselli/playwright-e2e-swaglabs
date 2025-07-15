@@ -1,14 +1,23 @@
-const {test, expect} = require('@playwright/test');
+/**
+ * @file Swag Labs E2E Test 
+ * @description Automated tests for the Swag Labs E2E Testing using Playwright & JS.
+ *
+ * @author Yazan
+ * @created 2025-07-2
+ * @tool VSC + Allure Reporter
+ */
+
+const { test, expect } = require('@playwright/test');
 
 test.describe("Cart Page", () => {
-    test.beforeEach("Login first to go to Home page", async ({page}) => {
+    test.beforeEach("Login first to go to Home page", async ({ page }) => {
         await page.goto("https://www.saucedemo.com/")
         await page.getByPlaceholder("Username").fill("standard_user");
         await page.getByPlaceholder("Password").fill("secret_sauce");
-        await page.getByRole("button", { name: 'Login' }).click();  
+        await page.getByRole("button", { name: 'Login' }).click();
     })
 
-    test("Adding Product to Cart", async ({page}) => {
+    test("Adding Product to Cart", async ({ page }) => {
         page.locator(".btn.btn_primary.btn_small.btn_inventory").first().click()
         expect(await page.locator(".shopping_cart_badge").textContent()).toBe("1")
         await page.locator(".shopping_cart_link").click()
@@ -16,7 +25,7 @@ test.describe("Cart Page", () => {
         expect(await page.locator(".inventory_item_name").textContent()).toBe("Sauce Labs Backpack")
     })
 
-    test("Removing Product from Cart", async ({page}) => {
+    test("Removing Product from Cart", async ({ page }) => {
         await page.locator("#add-to-cart-sauce-labs-backpack").click()
         await page.locator("#add-to-cart-sauce-labs-bike-light").click()
         await page.locator(".shopping_cart_link").click()
@@ -24,7 +33,7 @@ test.describe("Cart Page", () => {
         expect(await page.locator(".shopping_cart_badge").textContent()).toBe("1")
     })
 
-    test("Text Appearance and continue shopping button test", async ({page}) => {
+    test("Text Appearance and continue shopping button test", async ({ page }) => {
         await page.locator(".shopping_cart_link").click()
         expect(await page.locator("[data-test='title']").textContent()).toBe("Your Cart")
         expect(await page.locator("[data-test='cart-quantity-label']").textContent()).toBe("QTY")
